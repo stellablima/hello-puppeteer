@@ -1,0 +1,11 @@
+const context = await browser.createInfognitoBrowserContext().
+
+
+
+npm init
+
+
+//ler pag
+//pegar os coments e arrobas
+//conta arrobas reptidas
+//orgenar

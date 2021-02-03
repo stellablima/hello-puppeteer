@@ -7,19 +7,20 @@ console.log("Alimentador de Pets no PrincesaPop");
     const page = await browser.newPage();
     await page.goto('https://www.princesapop.com/');
 
-    await page.type('[id="email_connexion_mabimbo"]', process.env.LOGIN);
-    await page.type('[id="password_connexion_mabimbo"]', process.env.SENHA);
+    await page.waitForSelector('[id="email_connexion_mabimbo"]');
+    await page.type('[id="email_connexion_mabimbo"]', process.env.LOGIN, {delay:123});
+    await page.type('[id="password_connexion_mabimbo"]', process.env.SENHA, {delay:306});
     await page.click('[type="submit"]');
 
     await page.waitForSelector('[id="action-pet-hygiene"]');
     await page.click('[id="action-pet-hygiene"]');
     await page.waitForSelector('[id="pet-clean"]');
     await page.click('[id="pet-clean"]');
-    await page.waitFor(2902); //buagndo por causa do success mesage da pag
+    await page.waitForTimeout(2902); //buagndo por causa do success mesage da pag
     await page.click('[id="action-pet-moral"]');
     await page.waitForSelector('[id="pet-just-play"]');
     await page.click('[id="pet-just-play"]');
-    await page.waitFor(2030);
+    await page.waitForTimeout(2030);
     const fome = await page.$eval('[name="pet-hunger"]', valor => valor.innerText);
     console.log(fome);
     if (parseInt(fome.slice(0, -1)) > 25) {
@@ -27,7 +28,7 @@ console.log("Alimentador de Pets no PrincesaPop");
         await page.waitForSelector('[id="pet-hunger"]');
         await page.click('[id="pet-hunger"]');
     }
-    await page.waitFor(2570);
+    await page.waitForTimeout(2570);
     browser.close();
 })();
 
